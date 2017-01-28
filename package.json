@@ -1,0 +1,29 @@
+{
+  "name": "con-fusion-server",
+  "version": "1.0.0",
+  "description": "A server for the con fusion app.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulohaacke/con-fusion-server.git"
+  },
+  "keywords": [
+    "coursera",
+    "confusion",
+    "fullstack",
+    "specialization"
+  ],
+  "author": "Paulo Haacke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paulohaacke/con-fusion-server/issues"
+  },
+  "homepage": "https://github.com/paulohaacke/con-fusion-server#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.0",
+    "morgan": "^1.7.0"
+  }
+}
