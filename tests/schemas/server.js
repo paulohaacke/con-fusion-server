@@ -1,7 +1,7 @@
 var genericServer = require('./generic-server');
 var url = 'mongodb://localhost:27017/conFusion';
 
-testModel = "Promotions";
+testModel = "Leadership";
 
 if (testModel === "Dish") {
     var dishes = require('../../models/dishes');
@@ -40,4 +40,17 @@ if (testModel === "Dish") {
             description: 'Updated Test'
         }
     }));
+} else if (testModel === "Leadership") {
+    var leadership = require('../../models/leadership');
+    genericServer.connectModel(url, leadership, genericServer.createStandardTest({
+        "name": "Peter Pan",
+        "image": "images/alberto.png",
+        "designation": "Chief Epicurious Officer",
+        "abbr": "CEO",
+        "description": "Our CEO, Peter, . . ."
+    }, {
+        $set: {
+            description: 'Updated Test'
+        }
+    }))
 };
