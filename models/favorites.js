@@ -9,7 +9,6 @@ var favoriteSchema = new Schema({
         unique: true
     },
     dishes: [{
-        required: true,
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Dish',
         unique: true
