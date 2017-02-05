@@ -10,9 +10,8 @@ var favoriteRouter = express.Router();
 favoriteRouter.use(bodyParser.json());
 
 favoriteRouter.route('/')
-    .all(Verify.verifyOrdinaryUser)
-    .get(function(req, res, next) {
-        Favorites.find({ postedBy: req.decoded._id })
+    .get(Verify.verifyOrdinaryUser, function(req, res, next) {
+        Favorites.findOne({ postedBy: req.decoded._id })
             .populate('postedBy')
             .populate('dishes')
             .exec(function(err, favorites) {
@@ -20,7 +19,7 @@ favoriteRouter.route('/')
                 res.json(favorites)
             })
     })
-    .post(function(req, res, next) {
+    .post(Verify.verifyOrdinaryUser, function(req, res, next) {
         Favorites.findOneAndUpdate({
             postedBy: req.decoded._id
         }, {
@@ -33,7 +32,7 @@ favoriteRouter.route('/')
             res.json(favorites);
         });
     })
-    .delete(function(req, res, next) {
+    .delete(Verify.verifyOrdinaryUser, function(req, res, next) {
         Favorites.findOneAndRemove({
             postedBy: req.decoded._id
         }, function(err, favorites) {
@@ -43,8 +42,7 @@ favoriteRouter.route('/')
     })
 
 favoriteRouter.route('/:dishObjectId')
-    .all(Verify.verifyOrdinaryUser)
-    .delete(function(req, res, next) {
+    .delete(Verify.verifyOrdinaryUser, function(req, res, next) {
         Favorites.findOneAndUpdate({
             postedBy: req.decoded._id
         }, {
