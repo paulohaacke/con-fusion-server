@@ -11,7 +11,7 @@ leaderRouter.use(bodyParser.json());
 
 leaderRouter.route('/')
     .get(function(req, res, next) {
-        Leadership.find({}, function(err, leader) {
+        Leadership.find(req.query, function(err, leader) {
             if (err) return next(err);
             res.json(leader);
         });

@@ -11,7 +11,7 @@ promoRouter.use(bodyParser.json());
 
 promoRouter.route('/')
     .get(function(req, res, next) {
-        Promotions.find({}, function(err, promo) {
+        Promotions.find(req.query, function(err, promo) {
             if (err) return next(err);
             res.json(promo);
         });
