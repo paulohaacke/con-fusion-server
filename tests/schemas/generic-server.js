@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 exports.createStandardTest = function(createData, updateData, callback) {
     return function(db, model) {
         model.create(createData, function(err, data) {
-            if (err) throw err;
+            if (err) return next(err);
             console.log(model.modelName + ' created!');
             console.log(data);
 
@@ -11,7 +11,7 @@ exports.createStandardTest = function(createData, updateData, callback) {
 
             model.findByIdAndUpdate(id, updateData, { new: true })
                 .exec(function(err, data) {
-                    if (err) throw err;
+                    if (err) return next(err);
                     console.log('Updated ' + model.modelName + '!');
                     console.log(data);
 

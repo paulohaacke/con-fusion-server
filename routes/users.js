@@ -7,7 +7,7 @@ var Verify = require('./verify');
 /* GET users listing. */
 router.get('/', Verify.verifyOrdinaryUser, Verify.verifyAdmin, function(req, res, next) {
     User.find({}, function(err, users) {
-        if (err) throw err;
+        if (err) return next(err);
         res.json(users);
     })
 });
@@ -50,9 +50,7 @@ router.post('/login', function(req, res, next) {
                 });
             }
 
-            console.log('User in users: ', user);
-
-            var token = Verify.getToken(user);
+            var token = Verify.getToken({ "username": user.username, "_id": user._id, "admin": user.admin });
 
             res.status(200).json({
                 status: 'Login successful!',
